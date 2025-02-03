@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hasil Oprek Anggota SPNJ 2025</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #121212; /* Hitam elegan */
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+      }
+      .container-box {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
+      }
+      input {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid white;
+        color: white;
+      }
+      input::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      input:focus {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+      .btn-primary {
+        background-color: #1e3a8a; /* Biru tua */
+        border: none;
+      }
+      .btn-primary:hover {
+        background-color: #162c6e;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 768px) {
+        .container-box {
+          width: 90%;
+          padding: 20px;
+        }
+        h3 {
+          font-size: 18px;
+        }
+        input {
+          font-size: 14px;
+        }
+        .btn-primary {
+          font-size: 14px;
+          padding: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-box">
+      <img src="logo.png" alt="Logo SPNJ" width="100" class="mb-3" />
+      <h3>Hasil Oprek Anggota SPNJ 2025</h3>
+      <div class="mt-4">
+        <label for="tanggalLahir" class="form-label"
+          >Masukkan Tanggal Lahir</label
+        >
+        <input type="date" id="tanggalLahir" class="form-control text-center" />
+        <button class="btn btn-primary mt-3 w-100" onclick="cekHasil()">
+          Lihat Hasil
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function cekHasil() {
+        let tanggalLahir = document.getElementById("tanggalLahir").value;
+        if (tanggalLahir === "") {
+          alert("Harap masukkan tanggal lahir!");
+          return;
+        }
+        localStorage.setItem("tanggalLahir", tanggalLahir);
+        window.location.href = "hasil.html";
+      }
+    </script>
+  </body>
+</html>
