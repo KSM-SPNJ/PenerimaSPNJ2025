@@ -580,24 +580,32 @@
         },
       ];
 
-      function tampilkanHasil() {
-        let tanggalLahir = localStorage.getItem("tanggalLahir");
-        let anggota = dataAnggota.find((a) => a.tanggalLahir === tanggalLahir);
-
-        let hasilDiv = document.getElementById("hasil");
-        let waLink = document.getElementById("whatsappLink");
-
-        if (anggota) {
+      function tampilkanHasil(tanggalLahir) {
+        const hasilDiv = document.getElementById('hasil');
+        const member = dataAnggota.find(
+          (anggota) => anggota.tanggalLahir === tanggalLahir
+        );
+        
+        if (member) {
           hasilDiv.innerHTML = `
-            <h4>${anggota.nama}</h4>
-            <p>Jurusan: <strong>${anggota.jurusan}</strong></p>
-            <p>Kelas: <strong>${anggota.kelas}</strong></p>
+            <h5>Selamat ${member.nama}!</h5>
+            <p>Jurusan: ${member.jurusan}</p>
+            <p>Kelas: ${member.kelas}</p>
+            <p>Tanggal Lahir: ${member.tanggalLahir}</p>
           `;
-          waLink.href = `https://chat.whatsapp.com/Ky8otzYGIgiFQn0i6Yduqd`;
+          document.getElementById('whatsappLink').href = `https://wa.me/62${member.nama.replace(/[^0-9]/g, '')}`;
         } else {
-          hasilDiv.innerHTML = "<h4>Data Tidak Ditemukan</h4>";
-          waLink.style.display = "none";
+          hasilDiv.innerHTML = `
+            <h5>Anggota Tidak Ditemukan</h5>
+            <p>Cek kembali tanggal lahir yang dimasukkan.</p>
+          `;
         }
+      }
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const tanggalLahir = urlParams.get('tanggalLahir');
+      if (tanggalLahir) {
+        tampilkanHasil(tanggalLahir);
       }
 
       tampilkanHasil();
